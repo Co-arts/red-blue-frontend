@@ -65,9 +65,21 @@ export default function Page() {
         <div className="card space-y-3">
           <h2 className="text-lg font-semibold">Deposit ETH → Mint RED</h2>
           <input className="input" value={valueEth} onChange={e=>setValueEth(e.target.value)} />
-          <button className="btn" disabled={!!isPending || !!txLoading || !!paused} onClick={()=>{
-            writeContract({ address: controller, abi: controllerAbi, functionName: 'deposit', value: parseEther(valueEth || '0') })
-          }}>{isPending || txLoading ? 'Submitting…' : 'Deposit'}</button>
+          <button
+  className="btn"
+  disabled={!!isPending || !!txLoading || !!paused}
+  onClick={() => {
+    writeContract({
+      address: controller,
+      abi: controllerAbi,
+      functionName: 'deposit',
+      value: parseEther(valueEth || '0'),
+    })
+  }}
+>
+  {isPending || txLoading ? 'Submitting…' : 'Deposit'}
+</button>
+
           <p className="text-xs opacity-60">Split: 1/3 Vault • 1/3 LP • 1/3 Treasury (on-chain)</p>
         </div>
 
